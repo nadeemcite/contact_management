@@ -6,10 +6,12 @@ import { HttpModule } from '@angular/http';
 import { AppComponent } from './app.component';
 import { ContactsComponent } from './contacts/contacts.component';
 import {APP_ROUTES_PROVIDER} from './app.routes';
+import { ContactformComponent } from './contactform/contactform.component';
 @NgModule({
   declarations: [
     AppComponent,
-    ContactsComponent
+    ContactsComponent,
+    ContactformComponent
   ],
   imports: [
     BrowserModule,

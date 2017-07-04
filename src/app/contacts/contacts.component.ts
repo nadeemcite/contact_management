@@ -1,6 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { Headers, Http } from '@angular/http';
-import 'rxjs/add/operator/toPromise';
+import {Router} from '@angular/router';
 
 @Component({
   selector: 'app-contacts',
@@ -8,16 +8,34 @@ import 'rxjs/add/operator/toPromise';
   styleUrls: ['./contacts.component.css'],
 })
 export class ContactsComponent implements OnInit {
-
-  constructor(private http:Http) {
-    var headers=new Headers()
-    headers.append('key','ABCD');
-    this.http.get('https://zenways-contact.herokuapp.com/api/contacts',{headers:headers}).toPromise().then((res)=>{
-      console.log(res);
-    })
+  contacts = [];
+  headers;
+  constructor(private http: Http, private router:Router) {
+    this.headers = new Headers();
+    this.headers.append('key', 'ABCD');
+    this.refreshList();
+  }
+  refreshList() {
+    this.http.get('https://zenways-contact.herokuapp.com/api/contacts', { headers: this.headers }).subscribe(
+      res => {
+        console.log(res.json());
+        this.contacts = res.json().contacts;
+      }
+    );
+  }
+  ngOnInit() {
+  }
+  deleteContact(contact) {
+    confirm('Are you sure') && this.http.delete('https://zenways-contact.herokuapp.com/api/contact/' + contact._id, { headers: this.headers }).subscribe(
+      res => {
+        console.log(res.json());
+        this.refreshList();
+      }
+    );
   }
 
-  ngOnInit() {
+  editContact(contact){
+    this.router.navigate(['contact', contact._id]);
   }
 
 }

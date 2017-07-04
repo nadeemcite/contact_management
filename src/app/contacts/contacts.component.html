@@ -1,16 +1,23 @@
 <div class="row">
-  <table class="table" *ngIf="contacts && contacts.length>0">
-    <thead>
-      <tr>
-        <td>Name</td>
-        <td>Phone Number</td>
-      </tr>
-    </thead>
-    <tbody>
-      <tr *ngFor="let contact of contacts">
-        <td></td>
-      </tr>
-    </tbody>
+  <div class="col-md-10 col-md-offset-1">
+    <table class="table ">
+      <thead>
+        <tr>
+          <th>Name</th>
+          <th>Phone Number</th>
+          <th>Edit</th>
+          <th>Delete</th>
+        </tr>
+      </thead>
+      <tbody>
+        <tr *ngFor="let contact of contacts">
+          <td>{{contact.name}}</td>
+          <td>{{contact.phno}}</td>
+          <td><a class="btn btn-primary btn-xs" (click)="editContact(contact)">Edit</a></td>
+          <td><a class="btn btn-primary btn-xs" (click)="deleteContact(contact)">Delete</a></td>
+        </tr>
+      </tbody>
 
-  </table>
+    </table>
+  </div>
 </div>
