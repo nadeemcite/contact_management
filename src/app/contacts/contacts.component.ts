@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit,VERSION } from '@angular/core';
 import { Headers, Http } from '@angular/http';
 import {Router} from '@angular/router';
 
@@ -14,10 +14,11 @@ export class ContactsComponent implements OnInit {
     this.headers = new Headers();
     this.headers.append('key', 'ABCD');
     this.refreshList();
+    console.log('version '+VERSION.full)
   }
 
 
-  
+
   refreshList() {
     this.http.get('https://zenways-contact.herokuapp.com/api/contacts', { headers: this.headers }).subscribe(
       res => {
