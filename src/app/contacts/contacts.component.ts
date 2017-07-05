@@ -23,6 +23,7 @@ export class ContactsComponent implements OnInit {
       }
     );
   }
+  
   ngOnInit() {
   }
   deleteContact(contact) {
