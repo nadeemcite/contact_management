@@ -15,6 +15,9 @@ export class ContactsComponent implements OnInit {
     this.headers.append('key', 'ABCD');
     this.refreshList();
   }
+
+
+  
   refreshList() {
     this.http.get('https://zenways-contact.herokuapp.com/api/contacts', { headers: this.headers }).subscribe(
       res => {
@@ -23,7 +26,7 @@ export class ContactsComponent implements OnInit {
       }
     );
   }
-  
+
   ngOnInit() {
   }
   deleteContact(contact) {
